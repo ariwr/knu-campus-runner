@@ -43,9 +43,7 @@
 ```text
 [LATER] 시작 화면
 [LATER] 난이도 선택
-[LATER] 아이템별 Python 개념 설명
 [LATER] 퀴즈 기능
-[LATER] 저장/불러오기
 [LATER] 효과음 추가
 ```
 
@@ -105,7 +103,10 @@ professor = {
     "normal_image_key": "professor_classroom",
     "alert_image_key": "professor_classroom_angry",
     "sight_offset_x": 0.0,
+    "sight_min_offset_x": -170,
+    "sight_max_offset_x": 170,
     "sight_speed": 0.8,
+    "sight_dir": 1,
     "sight_length": 145,
     "sight_half_width": 115,
 }
@@ -138,6 +139,8 @@ floors = {
     1: {
         "name": "1층",
         "start": (80, 500),
+        "board_rect": pygame.Rect(...),
+        "elevator_rect": pygame.Rect(...),
         "rooms": [],
         "guards": [],
     },
@@ -416,7 +419,11 @@ cleared
 
 ### game_state.py
 
-플레이어 위치, 현재 층, 현재 방, 메시지, 대화 상태처럼 실행 중에 계속 바뀌는 값을 한 곳에서 관리한다.
+게임 중 계속 바뀌는 값을 모아둔 파일로 플레이어 위치, 현재 층, 현재 방, 게임 상태, 메시지, 대화 내용등을 관리한다. 
+
+### game_data.py
+
+게임 데이터가 들어있는 파일로 층, 방, 아이템 위치, 학생 위치, 교수님 정보, 경비 순찰 범위가 정의된다. 코드를 수정하지 않고 데이터만 바꾸고 싶을 때 사용한다.
 
 ### mechanics.py
 
@@ -442,9 +449,7 @@ cleared
 
 추후 확장 가능 기능:
 
-- Python 개념 퀴즈 추가
 - 난이도 선택
-- 저장/불러오기
 - 시작 화면
 - 효과음
 - 더 다양한 방 기믹
